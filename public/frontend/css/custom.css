@@ -1,0 +1,153 @@
+.newsimage {
+    text-align: center;
+    margin: auto;
+    margin-bottom: 20px;
+    box-shadow: 2px 5px 9px 2px rgba(0, 0, 0, .2);
+    padding: 5px;
+}
+
+.newsimage img {
+    display: inline
+}
+
+
+.box.box-solid.box-default {
+    border: 1px solid #d2d6de;
+}
+.box-body {
+    border-radius: 4px;
+    padding: 10px;
+    display: inline-table;
+}
+.inline {
+    display: inline;
+}
+
+.pagination>li {
+    display: inline;
+}
+
+.pagination>.active>a,
+.pagination>.active>a:focus,
+.pagination>.active>a:hover,
+.pagination>.active>span,
+.pagination>.active>span:focus,
+.pagination>.active>span:hover {
+    z-index: 3;
+    color: #fff;
+    cursor: default;
+    background-color: #337ab7;
+    border-color: #337ab7;
+}
+
+.pagination>li>a, .pagination>li>span {
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.42857143;
+    color: #337ab7;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+.sharebuttons{text-align:right;margin-bottom: 20px;border-bottom: 1px solid #d7d7d7;padding-bottom: 10px;}
+.fb-share-button{top: -7px;}
+.sharebuttons h2 {font-size: 24px; text-align: left;}
+
+#remove-row{text-align: center}
+.btn-more{background: #0053a0; color:#fff;}
+.btn-more:hover{background: #21409A; color:#fff;}
+
+
+.afterpost{display: inherit; margin:0px auto; margin-bottom:20px; text-align: center;}
+.afterpost .side-ads{margin: 0px 20px 0px 0px}
+.afterpost .side-ads img{width: 250px; height: 250px;object-fit: cover;}
+.newscontent{width: 100%}
+
+.featured .wrap .f-right h3 a,.wrap .o-right h3 a{
+    text-decoration: none;
+}
+.wrap .o-right h3  {
+    margin-top: 0px;
+    border-bottom: 1px solid #CCC;
+    padding-bottom: 6px;
+    margin-bottom: 12px;
+    color: #008fd5;
+    height: 47px;
+    overflow-y: hidden;
+    line-height: 23px;
+    font-size: 16px;
+    font-weight: 500;
+}
+.wrap .o-right p{font-size: 14px}
+
+.wrap .f-right .branddetail {font-size: 12px;color: #b2b2b2;}
+.brandlisting .wrap .title{
+    margin-top: 0px;
+    border-bottom: 1px solid #CCC;
+    padding-bottom: 6px;
+    margin-bottom: 6px;
+    color: #008fd5;
+    line-height: 23px;
+    font-size: 16px;
+    font-weight: 500;
+    min-height: 55px;}
+.brandlisting .wrap .detail{font-size:14px; color: #b2b2b2;}
+.brandlisting .wrap .price{font-size:14px;}
+.brandlisting .wrap .price span{font-weight:bold;}
+
+/*select 2 */
+.select2-container--default .select2-selection--single {
+    background-color: #fff;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    height: 38px;
+    padding: 5px;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 26px;
+    position: absolute;
+    top: 6px;
+    right: 1px;
+    width: 20px;
+}
+/*select 2 */
+
+/*Epaper*/
+.epaperBlock .epaperimage{border: 1px solid #ccc}
+.epaperBlock {text-align: center}
+.epaperBlock .detail{padding: 10px; background: #22419B; color: #ffffff}
+.epaperBlock .detail a{color: #ffffff; text-decoration: none}
+.epaperlist .wrap .f-top .ima{height:345px;}
+/*Epaper*/
+
+.categorypage .wrap .f-top{margin: 0px}
+.categorypage .wrap .f-right{text-align: justify; padding: 17px 5px; font-size: 15px}
+.categorypage .wrap .f-right h3{height: auto; font-size: 17px}
+/* responsive css starts */
+/*  #Mobile (Portrait)
+ ================================================== */
+
+
+/* Note: Design for a width of 320px */
+
+@media only screen and (max-width: 767px) {
+  .price-list input.form-control, .subs-form input.form-control {
+      margin: 5px 0;
+  }
+  .auto-search hr {width: 100%;}
+  .comapany-info {margin-top: 20px;}
+  .alg-rht img {width: 100%;}
+  .bg-inverse button {position: absolute; top: -95px; right: 15px;}
+  header .navbar-inverse {padding: 0;}
+  header .container{padding:0;margin:0;}
+  .navbar-inverse .navbar-toggler {border-color: rgba(0,0,0,1);background: #000;}
+
+  .latest-news img {
+      height: 180px;
+      border: 1px solid #000;
+  }
+}
+
+/* responsive css ends */
