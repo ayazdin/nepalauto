@@ -37,50 +37,24 @@ class FrontendController extends Controller
             $posts = Posts::where('ctype', '=', 'post')
 							->where('status', '=', 'publish')
                           ->orderBy('created_at', 'DESC')->limit(3)->get();
-            $featuredNews = Posts::where('ctype','=','post')
-                          ->where('status','=','publish')
-                          ->orderBy('created_at', 'DESC')
-                          ->offset(3)
-                          ->limit(6)
-                          ->get();
-
-
-            /*$featuredNews =  DB::table('posts')
+            $featuredNews =  DB::table('posts')
                     ->join('postmetas', 'postmetas.postid', '=', 'posts.id')
                     ->where('postmetas.meta_key', '=', 'featured_news')
                     ->where('postmetas.meta_value', '=', 'yes')
                     ->select('posts.*')
                     ->limit(6)
-                    ->get();*/
+                    ->get();
 
 
             $others = Posts::where('ctype','=','post')
                             ->where('status','=','publish')
                             ->orderBy('created_at', 'DESC')
-                            ->offset(9)
                             ->limit(6)
                             ->get();
 
-            $nadas = DB::table('posts')
-                    ->join('cat_relations', 'cat_relations.postid', '=', 'posts.id')
-                    ->join('postcats', 'postcats.id', '=', 'cat_relations.catid')
-                    ->where('postcats.slug', '=', 'nada')
-                    ->select('posts.*')
-                    ->orderby('created_at','DESC')
-                    ->limit(2)
-                    ->get();;
-
         	return view('frontend.home')->with('posts', $posts)
                                         ->with('others', $others)
-                                        ->with('featuredNews', $featuredNews)
-                                        ->with('nadas', $nadas)
-                                        ->with('mediumrectangle',
-                                            DB::table('posts')
-                                                ->join('cat_relations', 'cat_relations.postid', '=', 'posts.id')
-                                                ->join('postcats', 'postcats.id', '=', 'cat_relations.catid')
-                                                ->where('postcats.slug', '=', 'medium-rectangle')
-                                                ->select('posts.*')
-                                                ->get());
+                                        ->with('featuredNews', $featuredNews);
 
     }
 
@@ -119,7 +93,6 @@ class FrontendController extends Controller
                         ->where('posts.id', '!=', $postId)
                         ->where('postcats.id', '=', $catId)
                         ->select('posts.*')
-                        ->inRandomOrder()
                         ->limit(3)
                         ->get();
              return view('frontend.singlenews')->with('post',$post)
@@ -182,7 +155,7 @@ class FrontendController extends Controller
                 ->paginate(24);
         }
 
-
+            
             return view('frontend.category')->with('title',$title)
                 ->with('catproducts',$catproducts);
     }

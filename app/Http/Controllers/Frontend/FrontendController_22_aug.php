@@ -67,8 +67,8 @@ class FrontendController extends Controller
                     ->where('postcats.slug', '=', 'nada')
                     ->select('posts.*')
                     ->orderby('created_at','DESC')
-                    ->limit(2)
-                    ->get();;
+                    ->limit(6)
+                            ->get();;
 
         	return view('frontend.home')->with('posts', $posts)
                                         ->with('others', $others)
@@ -119,7 +119,6 @@ class FrontendController extends Controller
                         ->where('posts.id', '!=', $postId)
                         ->where('postcats.id', '=', $catId)
                         ->select('posts.*')
-                        ->inRandomOrder()
                         ->limit(3)
                         ->get();
              return view('frontend.singlenews')->with('post',$post)
@@ -182,7 +181,7 @@ class FrontendController extends Controller
                 ->paginate(24);
         }
 
-
+            
             return view('frontend.category')->with('title',$title)
                 ->with('catproducts',$catproducts);
     }

@@ -32,10 +32,9 @@ if(!empty($postmeta)){
     <div class="col-sm-9">
         <div class="sharebuttons row">
           <div class="col-sm-9">
-              <h2>{{$post->title}}
-                <!-- <span><?php echo date("Y-m-d", strtotime($post->created_at));?></span> -->
-                <span><?php echo $date['date']." ".$date['nmonth'].", ".$date['year'];?></span>
-              </h2>
+            <h2>{{$post->title}}
+            <span><?php echo date("Y-m-d", strtotime($post->created_at));?></span>
+          </h2>
           </div>
           <div class="col-sm-3">
             <div class="fb-share-button" data-href="{{ URL::to($post->clean_url) }}" data-layout="button" data-size="large" data-mobile-iframe="true">
@@ -89,7 +88,7 @@ if(!empty($postmeta)){
                     </div>
                     <div class="f-right">
                         <h3>
-                            <a href="{{ URL::to($rp->clean_url) }}" title="{{$rp->title}}">{{ $rp->title }}</a>
+                           <a href="{{ URL::to($rp->clean_url) }}" title="{{$rp->title}}">{{ $rp->title }}</a>
                         </h3>
                         {{ str_limit($rp->excerpt,80)  }}
                         <!-- <a href="{{ URL::to($rp->clean_url) }}" class="btn btn-more home-btn">

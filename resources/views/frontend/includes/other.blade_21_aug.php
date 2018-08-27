@@ -16,7 +16,7 @@
                         <a href="{{ URL::to($order->clean_url) }}" title="{{$order->title}}">
                             <div class="ima" style="background-image:url('{{ URL::to($orderimage) }}')"></div>
                         </a>
-                        
+
                     </div>
                     <div class="o-right">
                         <h3>
@@ -24,8 +24,11 @@
                                 {{$order->title}}
                             </a>
                         </h3>
-
-                        <p>{{ str_limit($order->excerpt,70)  }}</p>
+                        @if($order->excerpt!="")
+                        <p>{{ str_limit($order->excerpt,80)  }}</p>
+                        @else
+                        <p>{{ str_limit(strip_tags($order->content),80)}}</p>
+                        @endif
                         <!-- <a href="{{ URL::to($order->clean_url) }}" class="btn btn-more home-btn">
                             पुरा पढ्नुहोस् ...
                         </a> -->
@@ -36,10 +39,10 @@
         @endforeach
 
         <div id="remove-row" class="col-sm-12">
-            <button id="btn-more" data-id="{{ $order->id }}" class="btn btn-more" > Load More </button>
+            <button id="btn-more" data-id="15" class="btn btn-more" > Load More </button>
         </div>
     </div>
 
-    
+
 
 </div>

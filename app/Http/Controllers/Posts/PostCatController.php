@@ -14,7 +14,7 @@ class PostCatController extends Controller
 {
   public function getCategoryList($list="", $sel="", $ctype="")
   {
-    $categories=array();
+    $categories="";
     $parents = $this->getParent($ctype);
     foreach($parents as $p)
     {

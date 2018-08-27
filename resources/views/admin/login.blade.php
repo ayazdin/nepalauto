@@ -3,7 +3,7 @@
 @section('content')
 <div class="login-box">
   <div class="login-logo">
-    <a href="#"><img src="{{url('/images/nepalauto-logo.png')}}" alt="Nepal Auto" width="100%" /><!--<b>YalaMart</b>--></a>
+    <a href="#"><img src="{{url('/images/yalamart-logo.jpg')}}" alt="Nepal Auto" width="100%" /><!--<b>YalaMart</b>--></a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">

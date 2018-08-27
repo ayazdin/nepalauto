@@ -31,7 +31,11 @@ if(!empty($postmeta)){
                         }(document, 'script', 'facebook-jssdk'));</script>
                     <div class="col-sm-9">
                         <div class="sharebuttons row">
-                            <div class="col-sm-9"><h2>{{$post->title}}</h2></div>
+                            <div class="col-sm-9">
+                            <h2>{{$post->title}}
+                                <span><?php echo $date['date']." ".$date['nmonth'].", ".$date['year'];?></span>
+                            </h2>
+                            </div>
                             <div class="col-sm-3">
                                 <div class="fb-share-button" data-href="{{ URL::to($post->clean_url) }}" data-layout="button" data-size="large" data-mobile-iframe="true">
                                     <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ URL::to($post->clean_url) }}&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a>

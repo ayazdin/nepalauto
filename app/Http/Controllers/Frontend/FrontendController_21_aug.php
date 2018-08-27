@@ -12,8 +12,6 @@ use DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\NepaliCalenderController;
-
 
 use Illuminate\Support\Facades\Auth;
 use Mail;
@@ -37,7 +35,8 @@ class FrontendController extends Controller
             $posts = Posts::where('ctype', '=', 'post')
 							->where('status', '=', 'publish')
                           ->orderBy('created_at', 'DESC')->limit(3)->get();
-            $featuredNews = Posts::where('ctype','=','post')
+
+          $featuredNews = Posts::where('ctype','=','post')
                           ->where('status','=','publish')
                           ->orderBy('created_at', 'DESC')
                           ->offset(3)
@@ -61,19 +60,9 @@ class FrontendController extends Controller
                             ->limit(6)
                             ->get();
 
-            $nadas = DB::table('posts')
-                    ->join('cat_relations', 'cat_relations.postid', '=', 'posts.id')
-                    ->join('postcats', 'postcats.id', '=', 'cat_relations.catid')
-                    ->where('postcats.slug', '=', 'nada')
-                    ->select('posts.*')
-                    ->orderby('created_at','DESC')
-                    ->limit(2)
-                    ->get();;
-
         	return view('frontend.home')->with('posts', $posts)
                                         ->with('others', $others)
                                         ->with('featuredNews', $featuredNews)
-                                        ->with('nadas', $nadas)
                                         ->with('mediumrectangle',
                                             DB::table('posts')
                                                 ->join('cat_relations', 'cat_relations.postid', '=', 'posts.id')
@@ -102,15 +91,6 @@ class FrontendController extends Controller
                         ->limit(2)
                         ->get();
 
-
-        $year = $post->created_at->year;
-        $month = $post->created_at->month;
-        $day = $post->created_at->day;
-
-        $nepaliDate = new NepaliCalenderController();
-        $date = $nepaliDate->engToNep($year, $month, $day);
-        //dd($date);
-
         if(!empty($category)){
             $catId = $category->catid;
             $relatedposts = DB::table('posts')
@@ -119,20 +99,17 @@ class FrontendController extends Controller
                         ->where('posts.id', '!=', $postId)
                         ->where('postcats.id', '=', $catId)
                         ->select('posts.*')
-                        ->inRandomOrder()
                         ->limit(3)
                         ->get();
              return view('frontend.singlenews')->with('post',$post)
                                                ->with('postmeta',$postmeta)
                                                ->with('relatedposts',$relatedposts)
-                                               ->with('ads',$ads)
-                                               ->with('date',$date);
+                                               ->with('ads',$ads);
         }
 
          return view('frontend.singlenpage')->with('post',$post)
                                            ->with('postmeta',$postmeta)
-                                           ->with('ads',$ads)
-                                           ->with('date',$date);
+                                           ->with('ads',$ads);
 
 
     }
@@ -161,8 +138,8 @@ class FrontendController extends Controller
     public function category($slug){
         $category = Postcat::where('slug',$slug)->first();
         $title = $category->name;
-
-        if($slug=='automobile'){
+           
+           if($slug=='automobile'){
           $catproducts = DB::table('posts')
                 ->join('cat_relations', 'cat_relations.postid', '=', 'posts.id')
                 ->join('postcats', 'postcats.id', '=', 'cat_relations.catid')
@@ -181,8 +158,7 @@ class FrontendController extends Controller
                 ->orderby('created_at','DESC')
                 ->paginate(24);
         }
-
-
+        
             return view('frontend.category')->with('title',$title)
                 ->with('catproducts',$catproducts);
     }
@@ -194,9 +170,9 @@ class FrontendController extends Controller
 
         $others = Posts::where('ctype','=','post')
                         ->where('status','=','publish')
-                        ->where('id','>',$id)
                         ->orderBy('created_at', 'DESC')
-                        ->limit(2)
+                        ->offset($id)
+                        ->limit(4)
                         ->get();
 
         if(!$others->isEmpty())
@@ -231,7 +207,7 @@ class FrontendController extends Controller
             }
 
             $output .= '<div id="remove-row" class="col-sm-12">
-                            <button id="btn-more" data-id="'.$order->id.'" class="btn btn-more" > Load More </button>
+                            <button id="btn-more" data-id="'.($id+4).'" class="btn btn-more" > Load More </button>
                         </div>';
 
             echo $output;
@@ -338,18 +314,32 @@ class FrontendController extends Controller
                                                     ->with('autobrands',$autobrands);
         }
         else{
-
+            $products="";
             $autobrand = Autobrands::where('slug',$slug)->first();
 
             //dd($autobrand);
             $title = $autobrand->title;
-
-            $products =  DB::table('posts')
+            $brand = $autobrand->id;
+            /*$products =  DB::table('posts')
                 ->join('postmetas', 'postmetas.postid', '=', 'posts.id')
                 ->where('postmetas.meta_key', '=', 'brand')
                 ->where('postmetas.meta_value', '=', $autobrand->id)
                 ->select('posts.*')
-                ->paginate(24);
+                ->paginate(24);*/
+            $products = DB::table('posts')
+               ->where('ctype', '=', 'price')
+               ->join('postmetas', function($q) use ($brand){
+                 if($brand!="")
+                   $q->on('posts.id', '=', 'postmetas.postid')
+                   ->where('postmetas.meta_key', '=', 'brand')
+                   ->where('postmetas.meta_value', '=', $brand);
+                 else
+                   $q->on('posts.id', '=', 'postmetas.postid');
+                 }
+               )
+               ->select('posts.*', 'postmetas.meta_value')
+               ->orderBy('posts.id','DESC')
+               ->paginate(25);
 
             return view('frontend.single-brand')->with('title',$title)
                                                 ->with('products',$products);
@@ -414,13 +404,11 @@ class FrontendController extends Controller
         public function listepaper()
         {
             $allepaper = Posts::where('ctype', '=', 'epaper')
-                    ->orderBy('created_at', 'ASC')
+                    ->orderBy('created_at', 'DESC')
                     ->get();
             return view('frontend.epaper-list')->with('allepaper',$allepaper);
         }
     /*
     *Epaper section
     */
-
-
 }

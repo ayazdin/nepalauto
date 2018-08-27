@@ -60,7 +60,6 @@ class PostsController extends Controller
 
         if($id!="")
         {
-            $sel = '';
           $catrel = Cat_relation::where('postid','=', $id)->get();
           if($catrel->isNotEmpty())
           {
@@ -113,7 +112,6 @@ class PostsController extends Controller
     {
       //$pc = new PostsController();
       try{
-
           if(Auth::check())
               $user = Auth::user();
           if($request['postid']!="")
@@ -125,11 +123,7 @@ class PostsController extends Controller
           if(empty($request['prodSlug']))
             $posts->clean_url = $this->generateSeoURL($request['prodTitle']);
           else
-          {
-            $replace = $request['prodSlug'];
-            $posts->clean_url = str_replace(' ','',$replace);
-          }
-            
+            $posts->clean_url = $request['prodSlug'];
 
           if($request['description']!="")
             $posts->content = $request['description'];
@@ -150,8 +144,6 @@ class PostsController extends Controller
             $this->addCategoryRelation($request['category'], $posts->id);
           $this->addAttributes('keywords', $request['keywords'], $posts->id);
           $this->addAttributes('metadesc', $request['metadesc'], $posts->id);
-          $this->addAttributes('editor_choice', $request['editor_choice'], $posts->id);
-          $this->addAttributes('featured_news', $request['featured_news'], $posts->id);
           //$this->addAttributes('author_post', $request['author_post'], $posts->id);
       }
       catch ( Illuminate\Database\QueryException $e) {
@@ -183,11 +175,7 @@ class PostsController extends Controller
         if(empty($request['slug']))
           $slug = $this->generateSeoURL($request['catName']);
         else
-        {
-          $replace = $request['slug'];
-          $slug = str_replace(' ','',$replace);
-        }
-
+          $slug = $request['slug'];
         if(!empty($request['categoryType']))
           $postcat->type = $request['categoryType'];
         else

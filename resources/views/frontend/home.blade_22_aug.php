@@ -19,7 +19,7 @@
         </div>
 
         @include('frontend.includes.slider')
-
+        
         @include('frontend.includes.nada')
 
         @include('frontend.includes.price')

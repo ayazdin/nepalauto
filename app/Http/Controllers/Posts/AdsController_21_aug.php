@@ -66,10 +66,7 @@ class AdsController extends Controller
           if(empty($request['prodSlug']))
             $posts->clean_url = $pc->generateSeoURL($request['prodTitle']);
           else
-          {
-            $replace = $request['prodSlug'];
-            $posts->clean_url = str_replace(' ','',$replace);                        
-          }          
+            $posts->clean_url = $request['prodSlug'];
 
           if($request['description']!="")
             $posts->content = $request['description'];
@@ -142,11 +139,7 @@ class AdsController extends Controller
         if(empty($request['slug']))
           $slug = $pc->generateSeoURL($request['catName']);
         else
-        {
-          $replace = $request['slug'];
-          $slug = str_replace(' ','',$replace);          
-        }
-        
+          $slug = $request['slug'];
         if(!empty($request['categoryType']))
           $postcat->type = $request['categoryType'];
         else

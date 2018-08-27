@@ -42,11 +42,7 @@ class EpaperController extends Controller
         if(empty($request['slug']))
             $slug = $this->generateSeoURL($request['title']);
         else
-        {
-            $replace = $request['slug'];
-            $slug = str_replace(' ','',$replace);
-        }
-
+            $slug = $request['slug'];
 
         $post->clean_url = $this->getUniqueSlug($slug, $post->id);
         $post->image = $request['filepath'];

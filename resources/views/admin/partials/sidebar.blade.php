@@ -97,7 +97,7 @@
           </ul>
         </li>
 
-        <li class="active treeview">
+<li class="active treeview">
           <a href="{{url('/admin/ads/list')}}">
             <i class="fa fa-file-text"></i> <span>Price Search</span>
             <span class="pull-right-container">
@@ -151,7 +151,6 @@
             </li>
           </ul>
         </li>
-
 
       </ul>
     </section>

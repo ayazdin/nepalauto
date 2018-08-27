@@ -32,7 +32,7 @@ class AppServiceProvider extends ServiceProvider
                 ->orderby('updated_at','DESC')
                 ->limit(3)
                 ->get())
-
+                
                 ->with('sidebartops',
                     DB::table('posts')
                         ->join('cat_relations', 'cat_relations.postid', '=', 'posts.id')
@@ -69,7 +69,7 @@ class AppServiceProvider extends ServiceProvider
             );
         });
 
-
+        
 
     }
 

@@ -10,23 +10,24 @@
 
 @include('frontend.includes.price')
                 </div>
-                
+
 
                 @if(!$autobrands->isEmpty())
                     @foreach($autobrands as $autobran)
                         <div class="col-sm-4">
-                            <div class="wrap">
+                            <div class="wrap auto-brand">
                                 <?php
-                                if(!empty($autobran->image))
-                                    $brandimage = $autobran->image;
+                                if(!empty($autobran->logo))
+                                    $brandimage = $autobran->logo;
                                 else
                                     $brandimage = 'frontend/images/image-not-found.png';
                                 ?>
                                 <div class="f-top">
                                     <a href="{{ URL::to('price-list/'.$autobran->slug) }}" title="{{ $autobran->title }}">
-                                        <div class="ima" style="background-image:url('{{ URL::to($brandimage) }}')"></div>
+                                        <img src="{{ URL::to($brandimage) }}" alt="{{ $autobran->title }}">
+                                        <!-- <div class="ima" style="background-image:url('{{ URL::to($brandimage) }}')"></div> -->
                                     </a>
-                                    
+
                                 </div>
                                 <div class="f-right">
                                     <h3>

@@ -1,3 +1,4 @@
+<div style="display:none;"><?php //print_r($mediumrectangle);?></div>
 @if(!empty($mediumrectangle))
 <div class=" row mar-bot-40">
     <div class="col-md-12 med-ads">

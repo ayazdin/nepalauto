@@ -8,7 +8,7 @@
             </div>
         </div>
         <div class="col-sm-9 alg-rht">
-            <img src="{{url('/frontend/images/Gulf-Ave-trading.gif')}}" alt="Gulf Ave Trading" width="728">
+            <!--<img src="{{url('/frontend/images/Gulf-Ave-trading.gif')}}" alt="Gulf Ave Trading" width="728">-->
         </div>
     </div>
 </div>
@@ -55,8 +55,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{URL::to('/epaper/list')}}">ई-पेपर </a>
                     </li>
-
-                    
 
                     <!-- <li class="nav-item">
                         <a class="nav-link" href="{{URL::to('/category/banking')}}">बैंकिङ/इन्स्योरेन्स</a>

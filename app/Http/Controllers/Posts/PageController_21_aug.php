@@ -69,11 +69,7 @@ class PageController extends Controller
           if(empty($request['prodSlug']))
             $posts->clean_url = $pc->generateSeoURL($request['prodTitle']);
           else
-          {
-            $replace = $request['prodSlug'];
-            $posts->clean_url = str_replace(' ','',$replace);
-            //$posts->clean_url = $request['prodSlug'];
-          }
+            $posts->clean_url = $request['prodSlug'];
 
           if($request['description']!="")
             $posts->content = $request['description'];
@@ -85,7 +81,7 @@ class PageController extends Controller
           $posts->userid = $user->id;
           if($request['featuredimage']!="")
             $posts->image = $request['featuredimage'];
-          
+
           if($request['postid']!="")
             $posts->update();
           else

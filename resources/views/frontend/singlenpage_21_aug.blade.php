@@ -31,12 +31,7 @@ if(!empty($postmeta)){
         }(document, 'script', 'facebook-jssdk'));</script>
     <div class="col-sm-9">
         <div class="sharebuttons row">
-          <div class="col-sm-9">
-              <h2>{{$post->title}}
-                <!-- <span><?php echo date("Y-m-d", strtotime($post->created_at));?></span> -->
-                <span><?php echo $date['date']." ".$date['nmonth'].", ".$date['year'];?></span>
-              </h2>
-          </div>
+          <div class="col-sm-9"><h2>{{$post->title}}</h2></div>
           <div class="col-sm-3">
             <div class="fb-share-button" data-href="{{ URL::to($post->clean_url) }}" data-layout="button" data-size="large" data-mobile-iframe="true">
               <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ URL::to($post->clean_url) }}&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a>
@@ -64,44 +59,11 @@ if(!empty($postmeta)){
                         @endforeach
                     </div>
                 @endif
-
             <div class="newscontent">
                 {!! $post->content !!}
             </div>
         </div>
         
-    @if(!$relatedposts->isEmpty())
-        <div class="row mar-bot-30 featured">
-        <div class="block-ttl auto-search col-sm-12"><h2><span>सम्बन्धित समाचारहरू</span> <hr></h2></div>
-        @forelse ($relatedposts as $rp)
-            <div class="col-sm-4">
-                <div class="wrap">
-                    <?php
-                        if(!empty($rp->image))
-                            $featimage = $rp->image;
-                        else
-                            $featimage = 'frontend/images/image-not-found.png';
-                        ?>
-                    <div class="f-top">
-                        <a href="{{ URL::to($rp->clean_url) }}" title="{{$rp->title}}">
-                            <div class="ima" style="background-image:url('{{ URL::to($featimage) }}')"></div>
-                        </a>
-                    </div>
-                    <div class="f-right">
-                        <h3>
-                            <a href="{{ URL::to($rp->clean_url) }}" title="{{$rp->title}}">{{ $rp->title }}</a>
-                        </h3>
-                        {{ str_limit($rp->excerpt,80)  }}
-                        <!-- <a href="{{ URL::to($rp->clean_url) }}" class="btn btn-more home-btn">
-                            पुरा पढ्नुहोस् ...
-                        </a> -->
-                    </div>
-                    <div class="clear"></div>
-                </div>
-            </div>
-        @empty
-        @endforelse
-    </div>
-    @endif
+    
     </div>
 @endsection
