@@ -8,8 +8,19 @@
 @section('image',  URL::to('photos/uploads/2017/05/logo.png'))
 
 @section('content')
+    <style>
+        .homebanner{width: 100%; height: auto !important;}
+    </style>
     <div class="col-sm-9">
+        <div class=" row mar-bot-40">
+            <div class="col-md-12">
+                <img src="{{url('images/750-x-90px_nepal-auto.gif')}}" alt="" class="homebanner" >
+            </div>
+        </div>
+
         @include('frontend.includes.slider')
+
+        @include('frontend.includes.nada')
 
         @include('frontend.includes.price')
 

@@ -12,6 +12,7 @@ use DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
 use Illuminate\Support\Facades\Auth;
 use Mail;
 use Response;
@@ -58,10 +59,25 @@ class FrontendController extends Controller
                             ->offset(9)
                             ->limit(6)
                             ->get();
-
+          $nadas = DB::table('posts')
+                    ->join('cat_relations', 'cat_relations.postid', '=', 'posts.id')
+                    ->join('postcats', 'postcats.id', '=', 'cat_relations.catid')
+                    ->where('postcats.slug', '=', 'nada')
+                    ->select('posts.*')
+                    ->orderby('created_at','DESC')
+                    ->limit(2)
+                    ->get();
         	return view('frontend.home')->with('posts', $posts)
                                         ->with('others', $others)
-                                        ->with('featuredNews', $featuredNews);
+                                        ->with('featuredNews', $featuredNews)
+                                        ->with('nadas', $nadas)
+                                        ->with('mediumrectangle',
+                                            DB::table('posts')
+                                                ->join('cat_relations', 'cat_relations.postid', '=', 'posts.id')
+                                                ->join('postcats', 'postcats.id', '=', 'cat_relations.catid')
+                                                ->where('postcats.slug', '=', 'medium-rectangle')
+                                                ->select('posts.*')
+                                                ->get());
 
     }
 
@@ -131,7 +147,7 @@ class FrontendController extends Controller
         $category = Postcat::where('slug',$slug)->first();
         $title = $category->name;
 
-        if($slug=='automobile'){
+           if($slug=='automobile'){
           $catproducts = DB::table('posts')
                 ->join('cat_relations', 'cat_relations.postid', '=', 'posts.id')
                 ->join('postcats', 'postcats.id', '=', 'cat_relations.catid')
@@ -151,7 +167,6 @@ class FrontendController extends Controller
                 ->paginate(24);
         }
 
-            
             return view('frontend.category')->with('title',$title)
                 ->with('catproducts',$catproducts);
     }
@@ -397,7 +412,7 @@ class FrontendController extends Controller
         public function listepaper()
         {
             $allepaper = Posts::where('ctype', '=', 'epaper')
-                    ->orderBy('created_at', 'ASC')
+                    ->orderBy('created_at', 'DESC')
                     ->get();
             return view('frontend.epaper-list')->with('allepaper',$allepaper);
         }

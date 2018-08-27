@@ -1,3 +1,11 @@
+@if(!empty($mediumrectangle))
+<div class=" row mar-bot-40">
+    <div class="col-md-12 med-ads">
+        <!-- <img src="http://nepalauto.com/images/750-x-90px_nepal-auto.gif" alt="" class="homebanner"> -->
+        <img src="{{url($mediumrectangle[0]->image)}}" alt="{{$mediumrectangle[0]->title}}">
+    </div>
+</div>
+@endif
 @if(!$featuredNews->isEmpty())
     <div class="row mar-bot-30 featured">
         <div class="block-ttl auto-search col-sm-12"><h2><span>ताजा समाचार</span> <hr></h2></div>

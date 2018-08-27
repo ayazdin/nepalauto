@@ -54,7 +54,7 @@
 .sharebuttons{text-align:right;margin-bottom: 20px;border-bottom: 1px solid #d7d7d7;padding-bottom: 10px;}
 .fb-share-button{top: -7px;}
 .sharebuttons h2 {font-size: 24px; text-align: left;}
-
+.sharebuttons h2 span{display: block; font-size: 14px; margin-top: 10px;}
 #remove-row{text-align: center}
 .btn-more{background: #0053a0; color:#fff;}
 .btn-more:hover{background: #21409A; color:#fff;}
@@ -96,6 +96,7 @@
 .brandlisting .wrap .detail{font-size:14px; color: #b2b2b2;}
 .brandlisting .wrap .price{font-size:14px;}
 .brandlisting .wrap .price span{font-weight:bold;}
+.med-ads img {width: 100%; height: auto;}
 
 /*select 2 */
 .select2-container--default .select2-selection--single {
@@ -148,6 +149,18 @@
       height: 180px;
       border: 1px solid #000;
   }
+
+    .afterpost{display: block; }
+    .afterpost .side-ads{margin: 0px 20px 20px 0px}
+    .afterpost .side-ads img{width: 200px; height: 200px;object-fit: cover;}
+
+    .brand-logo img {
+        width: 274px;
+    }
+
+    .newscontent iframe {
+        width: 100%;
+    }
 }
 
 /* responsive css ends */

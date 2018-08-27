@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
                 ->where('postmetas.meta_value', '=', 'yes')
                 ->select('posts.*')
                 ->orderby('updated_at','DESC')
-                ->limit(6)
+                ->limit(3)
                 ->get())
 
                 ->with('sidebartops',
